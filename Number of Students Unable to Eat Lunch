@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int countStudents(vector<int>& nums1, vector<int>& nums2) {
+        
+        int n = nums1.size();
+
+        queue<int> q;
+
+        for(auto i:nums1) q.push(i);
+
+        int j = 0;
+
+        int cnt = 0;
+
+        while(j<n)
+        {
+            if(q.front()!=nums2[j])
+            {
+                if(cnt==q.size()) break;
+                int val = q.front();
+
+                q.pop();
+
+                cnt++;
+
+                q.push(val);
+            }
+
+            else if(q.front()==nums2[j])
+            {
+                j++;
+
+                cnt=0;
+
+                q.pop();
+            }
+
+        }
+
+        return cnt;
+    }
+};
